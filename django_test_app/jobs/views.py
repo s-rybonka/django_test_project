@@ -27,7 +27,7 @@ class JobListView(ListView):
         if category:
             queryset = queryset.filter(category_id=category)
         
-        return queryset.select_related('category', 'created_by')
+        return queryset
 
 
 class JobDetailView(DetailView):
@@ -36,7 +36,7 @@ class JobDetailView(DetailView):
     context_object_name = 'job'
     
     def get_queryset(self):
-        return Job.objects.filter(status='published').select_related('category', 'created_by')
+        return Job.objects.filter(status='published')
 
 
 class JobCreateView(LoginRequiredMixin, CreateView):
@@ -89,5 +89,5 @@ class MyApplicationsListView(LoginRequiredMixin, ListView):
     paginate_by = 20
     
     def get_queryset(self):
-        return JobApplication.objects.filter(applicant=self.request.user).select_related('job')
+        return JobApplication.objects.filter(applicant=self.request.user)
 

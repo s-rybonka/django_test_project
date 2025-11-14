@@ -276,4 +276,4 @@ django_test_app/media/
 .env
 .envs/*
 !.envs/.local/
-.errors.md
+errors_list.md
